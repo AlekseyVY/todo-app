@@ -61,6 +61,7 @@ export const Input = styled.input`
   font-size: 1.8rem;
   padding-left: 7.2rem;
   outline: none;
+  border: none;
 `
 
 
@@ -91,6 +92,7 @@ export const TodoListBlock = styled.div`
   left: 0.5%;
   top: 130%;
   display: flex;
+  border-radius: 0.5rem;
   flex-direction: column;
 
   -webkit-box-shadow: 10px 10px 20px 5px rgba(227,228,241,1);
@@ -114,7 +116,7 @@ export const Task = styled.div`
   font-size: 1.8rem;
   padding-left: 7.2rem;
   background: #FFF;
-  border-bottom: 2px solid #979797;
+  border-bottom: 2px solid #E3E4F1;
   position: relative;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -145,9 +147,8 @@ export const ElementsContainer = styled.div`
   font-size: 1.4rem;
   letter-spacing: -0.19px;
   background: #FFF;
-  border-bottom: 2px solid #979797;
   border-radius: 0.5rem;
-  margin: 0.01rem;
+
 `
 
 export const ItemsLeft = styled.div`
@@ -160,24 +161,19 @@ export const SwitchBlock = styled.div`
   justify-content: space-between;
 `
 
-export const All = styled.div`
-  &:hover {
-    cursor: pointer;
-    color: #3A7CFD;
-  }
-`
 
 export const Active = styled.div`
+  color: #3A7CFD;
+  font-weight: bolder;
   &:hover {
     cursor: pointer;
-    color: #3A7CFD;
   }
 `
 
-export const Completed = styled.div`
+export const Simple = styled.div`
   &:hover {
     cursor: pointer;
-    color: #3A7CFD;
+    font-weight: bolder;
   }
 `
 

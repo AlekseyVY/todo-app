@@ -1,11 +1,9 @@
 import {
-  Active,
-  All,
-  BottomContainer, ClearBlock, Completed,
+  Active, BottomContainer, ClearBlock,
   ContentContainer, Delete, ElementsContainer, FormContainer, Input, ItemsLeft,
   LogoContainer,
   LogoText,
-  MainContainer, Oval, SwitchBlock, SwitcherIcon, Task, TextWrapper,
+  MainContainer, Oval, Simple, SwitchBlock, SwitcherIcon, Task, TextWrapper,
   TodoContainer, TodoListBlock,
   TopBackground
 } from "./styles";
@@ -14,6 +12,33 @@ import {useState} from "react";
 
 const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, deleteTask}) => {
   const [value, setValue] = useState('')
+  const [active, setActive] = useState([
+    {
+      id: 1,
+      active: true,
+      text: 'All'
+    },
+    {
+      id: 2,
+      active: false,
+      text: 'Active'
+    },
+    {
+      id: 3,
+      active: false,
+      text: 'Completed'
+    }
+  ])
+
+  const switchActiveState = (id) => {
+    console.log(id)
+    setActive(active.map(ele => {
+      ele.active = ele.id === id;
+      console.log(ele)
+      return ele
+    }))
+  }
+
 
   const addTaskHandler = (e) => {
     e.preventDefault()
@@ -27,6 +52,8 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, del
       setValue('')
     }
   }
+
+
 
   return (
     <MainContainer>
@@ -51,7 +78,7 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, del
                       <TextWrapper>
                         {element.task}
                       </TextWrapper>
-                      <Delete cross={cross.default} onClick={(e) => deleteTask(element.id)}/>
+                      <Delete cross={cross.default} onClick={() => deleteTask(element.id)}/>
                       <Oval/>
                     </Task>
                   )
@@ -62,9 +89,19 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, del
                   {tasks.length} items left
                 </ItemsLeft>
                 <SwitchBlock>
-                  <All>All</All>
-                  <Active>Active</Active>
-                  <Completed>Completed</Completed>
+                  {
+                    active.map(ele => {
+                      if(ele.active){
+                        return (
+                          <Active key={ele.id}>{ele.text}</Active>
+                        )
+                      } else {
+                        return (
+                          <Simple key={ele.id} onClick={() => switchActiveState(ele.id)}>{ele.text}</Simple>
+                          )
+                      }
+                    })
+                  }
                 </SwitchBlock>
                 <ClearBlock>
                   Clear Completed
