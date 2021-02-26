@@ -26,6 +26,7 @@ let onLoadState = {
 const GET_ALL = 'GET_ALL'
 const ADD_NEW = 'ADD_NEW'
 const CHANGE_COMPLETION = 'CHANGE_COMPLETION'
+const DELETE = 'DELETE'
 
 // todo add, getAll, getCompleted, getNotCompleted, delete?
 const todoReducer = (state = onLoadState, action) => {
@@ -40,6 +41,12 @@ const todoReducer = (state = onLoadState, action) => {
       return {
         ...state,
         tasks: [...state.tasks, action.payload]
+      }
+    }
+    case DELETE: {
+      return {
+        ...state,
+        tasks: state.tasks.filter((ele) => ele.id !== action.payload)
       }
     }
     case CHANGE_COMPLETION: {
@@ -82,6 +89,13 @@ export const markCompletedTasks = (id) => {
   }
 }
 
+export const deleteTask = (id) => {
+  return {
+    type: 'DELETE',
+    payload: id
+  }
+}
+
 export const addNewTaskThunk = (newTask) => {
   return (dispatch) => {
     let task = {
@@ -102,6 +116,12 @@ export const getAllTaskThunk = () => {
 export const markCompletedTasksThunk = (id) => {
   return (dispatch) => {
     dispatch(markCompletedTasks(id))
+  }
+}
+
+export const deleteTaskThunk = (id) => {
+  return (dispatch) => {
+    dispatch(deleteTask(id))
   }
 }
 

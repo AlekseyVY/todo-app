@@ -1,23 +1,28 @@
 import {
-  BottomContainer,
-  ContentContainer, FormContainer, Input,
+  Active,
+  All,
+  BottomContainer, ClearBlock, Completed,
+  ContentContainer, Delete, ElementsContainer, FormContainer, Input, ItemsLeft,
   LogoContainer,
   LogoText,
-  MainContainer, Oval, SwitcherIcon, Task,
+  MainContainer, Oval, SwitchBlock, SwitcherIcon, Task, TextWrapper,
   TodoContainer, TodoListBlock,
   TopBackground
 } from "./styles";
 import {useState} from "react";
 
 
-const Home = ({tasks, addTask, changeCompletion, getAll, image, icon}) => {
+const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, deleteTask}) => {
   const [value, setValue] = useState('')
 
   const addTaskHandler = (e) => {
     e.preventDefault()
     if(value.length < 1) {
       alert('Please Enter Valid Task!')
-    } else {
+    } else if(tasks.length >= 5) {
+      alert('Please finish tasks you already scheduled!, Big long lists can be frustrating and can potentially lead to anxiety and procrastination!')
+    }
+    else {
       addTask(value)
       setValue('')
     }
@@ -43,13 +48,30 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon}) => {
                 tasks.map((element) => {
                   return (
                     <Task key={element.id}>
-                      {element.task}
+                      <TextWrapper>
+                        {element.task}
+                      </TextWrapper>
+                      <Delete cross={cross.default} onClick={(e) => deleteTask(element.id)}/>
                       <Oval/>
                     </Task>
                   )
                 })
               }
+              <ElementsContainer>
+                <ItemsLeft>
+                  {tasks.length} items left
+                </ItemsLeft>
+                <SwitchBlock>
+                  <All>All</All>
+                  <Active>Active</Active>
+                  <Completed>Completed</Completed>
+                </SwitchBlock>
+                <ClearBlock>
+                  Clear Completed
+                </ClearBlock>
+              </ElementsContainer>
             </TodoListBlock>
+
           </TodoContainer>
         </ContentContainer>
       </TopBackground>
