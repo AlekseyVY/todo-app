@@ -1,5 +1,5 @@
 import {applyMiddleware, createStore} from "redux";
-import {todoReducer} from "./todoReducer/todoReducer";
+import todoReducer from "./todoReducer/todoReducer";
 import thunk from "redux-thunk";
 
 
