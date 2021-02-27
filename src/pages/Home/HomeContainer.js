@@ -1,25 +1,22 @@
 import {connect} from "react-redux";
 import Home from "./Home";
 import {
-  addNewTaskThunk,
-  deleteTaskThunk,
   getAllTaskThunk,
-  markCompletedTasks
+  markCompletedTasks, updateTasksThunk
 } from "../../redux/todoReducer/todoReducer";
 import {bgDesktopLight, crossIcon, moonIcon} from "../../assets";
 
 
-const HomeContainer = ({ tasks, addNewTaskThunk, getAllTaskThunk, markCompletedTasks, deleteTaskThunk}) => {
+const HomeContainer = ({ tasks, updateTasksThunk, getAllTaskThunk, markCompletedTasks}) => {
 
   return <Home
     tasks={tasks}
-    addTask={addNewTaskThunk}
+    update={updateTasksThunk}
     changeCompletion={markCompletedTasks}
     getAll={getAllTaskThunk}
     image={bgDesktopLight}
     icon={moonIcon}
     cross={crossIcon}
-    deleteTask={deleteTaskThunk}
   />
 }
 
@@ -30,8 +27,7 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  addNewTaskThunk,
+  updateTasksThunk,
   getAllTaskThunk,
   markCompletedTasks,
-  deleteTaskThunk
 })(HomeContainer)

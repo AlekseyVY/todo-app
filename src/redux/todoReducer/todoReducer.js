@@ -24,29 +24,20 @@ let onLoadState = {
 }
 
 const GET_ALL = 'GET_ALL'
-const ADD_NEW = 'ADD_NEW'
+const UPDATE_TASKS = 'UPDATE_TASKS'
 const CHANGE_COMPLETION = 'CHANGE_COMPLETION'
-const DELETE = 'DELETE'
 
 // todo add, getAll, getCompleted, getNotCompleted, delete?
 const todoReducer = (state = onLoadState, action) => {
   switch (action.type) {
     case GET_ALL: {
-      return {
-        ...state,
-        tasks: [...state.tasks]
-      }
+      console.log('all')
+      return state
     }
-    case ADD_NEW: {
+    case UPDATE_TASKS: {
       return {
         ...state,
-        tasks: [...state.tasks, action.payload]
-      }
-    }
-    case DELETE: {
-      return {
-        ...state,
-        tasks: state.tasks.filter((ele) => ele.id !== action.payload)
+        tasks: [...action.payload]
       }
     }
     case CHANGE_COMPLETION: {
@@ -75,10 +66,10 @@ export const getAllTasks = () => {
   }
 }
 
-export const addNewTask = (task) => {
+export const updateTasks = (tasks) => {
   return {
-    type: 'ADD_NEW',
-    payload: task
+    type: 'UPDATE_TASKS',
+    payload: tasks
   }
 }
 
@@ -89,21 +80,9 @@ export const markCompletedTasks = (id) => {
   }
 }
 
-export const deleteTask = (id) => {
-  return {
-    type: 'DELETE',
-    payload: id
-  }
-}
-
-export const addNewTaskThunk = (newTask) => {
+export const updateTasksThunk = (tasks) => {
   return (dispatch) => {
-    let task = {
-      id: Math.floor((Math.random() * 100000) + 1).toString(),
-      task: newTask,
-      completed: false
-    }
-    dispatch(addNewTask(task))
+    dispatch(updateTasks(tasks))
   }
 }
 
@@ -119,10 +98,5 @@ export const markCompletedTasksThunk = (id) => {
   }
 }
 
-export const deleteTaskThunk = (id) => {
-  return (dispatch) => {
-    dispatch(deleteTask(id))
-  }
-}
 
 export default todoReducer;

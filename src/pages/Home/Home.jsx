@@ -8,35 +8,35 @@ import {
   TopBackground
 } from "./styles";
 import {useState} from "react";
+import {useEffect} from "react";
 
 
-const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, deleteTask}) => {
+const Home = ({tasks, update, changeCompletion, image, icon, cross}) => {
   const [value, setValue] = useState('')
-  const [active, setActive] = useState([
-    {
-      id: 1,
-      active: true,
-      text: 'All'
-    },
-    {
-      id: 2,
-      active: false,
-      text: 'Active'
-    },
-    {
-      id: 3,
-      active: false,
-      text: 'Completed'
-    }
-  ])
+  const [active, setActive] = useState([{id: 1, active: true, text: 'All'},
+    {id: 2, active: false, text: 'Active'}, {id: 3, active: false, text: 'Completed'}])
+  const [tasksArray, setTasksArray] = useState(tasks)
+  const [activeArray, setActiveArray] = useState([])
+  const [completedArray, setCompletedArray] = useState([])
+  console.log('Tasks', tasksArray)
+  console.log('Active', activeArray)
+  console.log('Completed', completedArray)
+
+  useEffect(() => {
+    setActiveArray(tasksArray.filter((ele) => !ele.completed))
+    setCompletedArray(tasksArray.filter((ele) => ele.completed))
+  }, [tasksArray])
 
   const switchActiveState = (id) => {
-    console.log(id)
     setActive(active.map(ele => {
       ele.active = ele.id === id;
-      console.log(ele)
       return ele
     }))
+  }
+
+  const deleteTaskHandler = (id) => {
+    setTasksArray(tasksArray.filter((ele) => ele.id !== id))
+    update(tasksArray)
   }
 
 
@@ -44,15 +44,31 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, del
     e.preventDefault()
     if(value.length < 1) {
       alert('Please Enter Valid Task!')
-    } else if(tasks.length >= 5) {
+    } else if(tasksArray.length >= 5) {
       alert('Please finish tasks you already scheduled!, Big long lists can be frustrating and can potentially lead to anxiety and procrastination!')
     }
     else {
-      addTask(value)
+      let task = {
+        id: Math.ceil((Math.random() * 1_000_000) + 1).toString(),
+        task: value,
+        completed: false
+      }
+      setTasksArray([...tasksArray, task])
+      update(tasksArray)
       setValue('')
     }
   }
 
+  const completedHandler = (id) => {
+    console.log('Completed', id)
+    setTasksArray(tasksArray.map(ele => {
+      if(ele.id === id){
+        ele.completed = !ele.completed
+        return ele
+      }
+      return ele
+    }))
+  }
 
 
   return (
@@ -72,21 +88,57 @@ const Home = ({tasks, addTask, changeCompletion, getAll, image, icon, cross, del
             </FormContainer>
             <TodoListBlock>
               {
-                tasks.map((element) => {
-                  return (
-                    <Task key={element.id}>
-                      <TextWrapper>
-                        {element.task}
-                      </TextWrapper>
-                      <Delete cross={cross.default} onClick={() => deleteTask(element.id)}/>
-                      <Oval/>
-                    </Task>
-                  )
+                active.map(ele => {
+                  if(ele.id === 2 && ele.active === true) {
+                    return (
+                      activeArray.map((element) => {
+                        return (
+                          <Task key={element.id}>
+                            <TextWrapper>
+                              {element.task}
+                            </TextWrapper>
+                            <Delete cross={cross.default} onClick={() => deleteTaskHandler(element.id)}/>
+                            <Oval onClick={() => completedHandler(element.id)}/>
+                          </Task>
+                        )
+                      })
+                    )
+                  } else if(ele.id === 3 && ele.active === true) {
+                    return (
+                      completedArray.map((element) => {
+                        return (
+                          <Task key={element.id}>
+                            <TextWrapper>
+                              {element.task}
+                            </TextWrapper>
+                            <Delete cross={cross.default} onClick={() => deleteTaskHandler(element.id)}/>
+                            <Oval onClick={() => completedHandler(element.id)}/>
+                          </Task>
+                        )
+                      })
+                    )
+                  } else if (ele.id === 1 && ele.active === true) {
+                    console.log('ALL')
+                    return (
+                      tasksArray.map((element) => {
+                        return (
+                          <Task key={element.id}>
+                            <TextWrapper>
+                              {element.task}
+                            </TextWrapper>
+                            <Delete cross={cross.default} onClick={() => deleteTaskHandler(element.id)}/>
+                            <Oval onClick={() => completedHandler(element.id)}/>
+                          </Task>
+                        )
+                      })
+                    )
+
+                  }
                 })
               }
               <ElementsContainer>
                 <ItemsLeft>
-                  {tasks.length} items left
+                  {tasksArray.length} items left
                 </ItemsLeft>
                 <SwitchBlock>
                   {
