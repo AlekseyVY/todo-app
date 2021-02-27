@@ -7,6 +7,7 @@ import {data} from "../../TmpData/data";
 
 const HomeContainer = ({tasks, updateTasksThunk}) => {
 
+  console.log('CONTAINER RENDER')
   return <Home
     tasks={tasks}
     update={updateTasksThunk}

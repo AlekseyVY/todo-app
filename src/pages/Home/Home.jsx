@@ -21,7 +21,7 @@ import InputContainer from "../../components/InputContainer";
 
 
 const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
-  const [value, setValue] = useState('')
+
   const [active, setActive] = useState(data)
   const [tasksArray, setTasksArray] = useState(tasks)
   const [activeArray, setActiveArray] = useState([])
@@ -32,6 +32,8 @@ const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
     setCompletedArray(tasksArray.filter((ele) => ele.completed))
   }, [tasksArray])
 
+
+  console.log('VIEW RENDER')
 
   return (
     <MainContainer>
@@ -44,8 +46,10 @@ const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
             <SwitcherIcon icon={icon.default}/>
           </LogoContainer>
           <TodoContainer>
-            <InputContainer onSubmit={(e) => addTaskHandler(e, value, tasksArray, setTasksArray, update, setValue)}
-                            value={value} onChange={(e) => setValue(e.target.value)}/>
+            <InputContainer tasksArray={tasksArray}
+                            setTasksArray={setTasksArray}
+                            update={update}
+            />
             <TodoListBlock>
               {
                 active.map(ele => {

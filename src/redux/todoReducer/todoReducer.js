@@ -1,9 +1,10 @@
 import {onLoadState} from "../../TmpData/data";
+import {UPDATE_TASKS} from "../CONSTANTS";
 
 
-const UPDATE_TASKS = 'UPDATE_TASKS'
 
-// todo add, getAll, getCompleted, getNotCompleted, delete?
+
+
 const todoReducer = (state = onLoadState, action) => {
   switch (action.type) {
     case UPDATE_TASKS: {

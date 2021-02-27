@@ -1,4 +1,6 @@
-export const switchActiveState = (data, arr, func) => {
+
+
+export const  switchActiveState = (data, arr, func) => {
   func(arr.map(ele => {
     ele.active = ele.id === data;
     return ele
@@ -11,13 +13,14 @@ export const deleteTaskHandler = (id, arr, func, update) => {
   update(arr)
 }
 
-export const addTaskHandler = (e, value, tasksArray, setTasksArray, update, setValue) => {
+export  const addTaskHandler = (e, value, tasksArray, setTasksArray, update, setValue) => {
   e.preventDefault()
-  if (value.length < 1) {
+  if(value.length < 1) {
     alert('Please Enter Valid Task!')
-  } else if (tasksArray.length >= 5) {
+  } else if(tasksArray.length >= 5) {
     alert('Please finish tasks you already scheduled!, Big long lists can be frustrating and can potentially lead to anxiety and procrastination!')
-  } else {
+  }
+  else {
     let task = {
       id: Math.ceil((Math.random() * 1_000_000) + 1).toString(),
       task: value,
@@ -29,9 +32,9 @@ export const addTaskHandler = (e, value, tasksArray, setTasksArray, update, setV
   }
 }
 
-export const completedHandler = (id, setTasksArray, tasksArray) => {
+export  const completedHandler = (id, setTasksArray, tasksArray) => {
   setTasksArray(tasksArray.map(ele => {
-    if (ele.id === id) {
+    if(ele.id === id){
       ele.completed = !ele.completed
       return ele
     }
@@ -39,7 +42,7 @@ export const completedHandler = (id, setTasksArray, tasksArray) => {
   }))
 }
 
-export const clearCompletedHandler = (setTasksArray, tasksArray, update) => {
+export   const clearCompletedHandler = (setTasksArray, tasksArray, update) => {
   setTasksArray(tasksArray.filter(ele => !ele.completed))
   update(tasksArray)
 }

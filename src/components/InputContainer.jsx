@@ -1,9 +1,13 @@
 import {FormContainer, Input, Oval} from "../pages/Home/styles";
+import {addTaskHandler} from "../Handlers/handlers";
+import {useState} from "react";
 
 
-function InputContainer(props) {
-  return <FormContainer onSubmit={props.onSubmit}>
-    <Input value={props.value} onChange={props.onChange} placeholder={"Create a new todo…"}/>
+function InputContainer({ tasksArray, setTasksArray, update}) {
+  const [value, setValue] = useState('')
+
+  return <FormContainer onSubmit={(e) =>addTaskHandler(e, value, tasksArray, setTasksArray, update, setValue)}>
+    <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder={"Create a new todo…"}/>
     <Oval type={"submit"}/>
   </FormContainer>;
 }
