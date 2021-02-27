@@ -11,7 +11,7 @@ import {useState} from "react";
 import {useEffect} from "react";
 
 
-const Home = ({tasks, update, changeCompletion, image, icon, cross}) => {
+const Home = ({tasks, update, image, icon, cross}) => {
   const [value, setValue] = useState('')
   const [active, setActive] = useState([{id: 1, active: true, text: 'All'},
     {id: 2, active: false, text: 'Active'}, {id: 3, active: false, text: 'Completed'}])
@@ -70,6 +70,10 @@ const Home = ({tasks, update, changeCompletion, image, icon, cross}) => {
     }))
   }
 
+  const clearCompletedHandler = () => {
+    setTasksArray(tasksArray.filter(ele => !ele.completed))
+    update(tasksArray)
+  }
 
   return (
     <MainContainer>
@@ -132,7 +136,6 @@ const Home = ({tasks, update, changeCompletion, image, icon, cross}) => {
                         )
                       })
                     )
-
                   }
                 })
               }
@@ -155,12 +158,11 @@ const Home = ({tasks, update, changeCompletion, image, icon, cross}) => {
                     })
                   }
                 </SwitchBlock>
-                <ClearBlock>
+                <ClearBlock onClick={() => clearCompletedHandler()}>
                   Clear Completed
                 </ClearBlock>
               </ElementsContainer>
             </TodoListBlock>
-
           </TodoContainer>
         </ContentContainer>
       </TopBackground>
