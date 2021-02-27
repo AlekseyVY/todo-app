@@ -1,10 +1,11 @@
 import {connect} from "react-redux";
 import Home from "./Home";
 import {updateTasksThunk} from "../../redux/todoReducer/todoReducer";
-import {bgDesktopLight, crossIcon, moonIcon} from "../../assets";
+import {bgDesktopLight, checkIcon, crossIcon, moonIcon} from "../../assets";
+import {data} from "../../TmpData/data";
 
 
-const HomeContainer = ({ tasks, updateTasksThunk}) => {
+const HomeContainer = ({tasks, updateTasksThunk}) => {
 
   return <Home
     tasks={tasks}
@@ -12,6 +13,8 @@ const HomeContainer = ({ tasks, updateTasksThunk}) => {
     image={bgDesktopLight}
     icon={moonIcon}
     cross={crossIcon}
+    checkIcon={checkIcon}
+    data={data}
   />
 }
 

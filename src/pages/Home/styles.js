@@ -81,9 +81,30 @@ export const Oval = styled.button`
     width: 2.4rem;
     height: 2.4rem;
     border-radius: 90%;
+    border-color: #55DDFF;
+  }
+`
+
+export const CompletedOval = styled.button`
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid #E3E4F1;
+  background: linear-gradient(90deg, rgba(85, 221, 255), rgba(192, 88, 243) 100%);
+  border-radius: 90%;
+  position: absolute;
+  left: 5%;
+  top: 33%;
+  outline: none;
+  z-index: 1;
+  &:hover {
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 90%;
     border-color: darkgreen;
   }
 `
+
 
 
 export const TodoListBlock = styled.div`
@@ -123,6 +144,7 @@ export const Task = styled.div`
   display: flex;
   align-items: center;
   margin: 0.01rem;
+  color: #494C6B;
   &:hover {
     cursor: pointer;
   }
@@ -182,6 +204,11 @@ export const ClearBlock = styled.div`
     cursor: pointer;
     color: orangered;
   }
+`
+
+export const CompletedText = styled.div`
+  text-decoration: line-through;
+  color: #D1D2DA;
 `
 
 

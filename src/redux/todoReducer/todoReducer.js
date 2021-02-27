@@ -1,27 +1,5 @@
-let onLoadState = {
-  tasks: [
-    {
-      id: '1',
-      task: 'Learn TypeScript',
-      completed: false
-    },
-    {
-      id: '2',
-      task: 'Learn HTML',
-      completed: false
-    },
-    {
-      id: '3',
-      task: 'Learn React',
-      completed: false
-    },
-    {
-      id: '4',
-      task: 'Learn javaScript',
-      completed: true
-    }
-  ]
-}
+import {onLoadState} from "../../TmpData/data";
+
 
 const UPDATE_TASKS = 'UPDATE_TASKS'
 
@@ -54,7 +32,6 @@ export const updateTasksThunk = (tasks) => {
     dispatch(updateTasks(tasks))
   }
 }
-
 
 
 export default todoReducer;
