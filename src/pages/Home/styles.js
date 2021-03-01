@@ -131,7 +131,7 @@ export const Delete = styled.div`
   background-image: url(${props => props.cross});
 `
 
-export const Task = styled.div`
+export const Task = styled.li`
   width: 46.8rem;
   height: 6.4rem;
   font-size: 1.8rem;
@@ -219,4 +219,11 @@ export const BottomContainer = styled.div`
   font-size: 1.4rem;
   text-align: center;
   background: #FFF;
+`
+
+
+export const UlContainer = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
 `

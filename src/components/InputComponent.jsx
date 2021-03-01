@@ -3,7 +3,7 @@ import {addTaskHandler} from "../Handlers/handlers";
 import {useState} from "react";
 
 
-function InputContainer({ tasksArray, setTasksArray, update}) {
+function InputComponent({ tasksArray, setTasksArray, update}) {
   const [value, setValue] = useState('')
 
   return <FormContainer onSubmit={(e) =>addTaskHandler(e, value, tasksArray, setTasksArray, update, setValue)}>
@@ -13,4 +13,4 @@ function InputContainer({ tasksArray, setTasksArray, update}) {
 }
 
 
-export default InputContainer;
+export default InputComponent;

@@ -1,27 +1,20 @@
 import {
-  Active, BottomContainer, ClearBlock,
-  ContentContainer, ElementsContainer, FormContainer, Input, ItemsLeft,
+  BottomContainer,
+  ContentContainer,
   LogoContainer,
   LogoText,
-  MainContainer, Oval, Simple, SwitchBlock, SwitcherIcon,
+  MainContainer, SwitcherIcon,
   TodoContainer, TodoListBlock,
   TopBackground
 } from "./styles";
 import {useState} from "react";
 import {useEffect} from "react";
-import TaskComponent from "../../components/TaskComponent";
-import {
-  addTaskHandler,
-  clearCompletedHandler,
-  completedHandler,
-  deleteTaskHandler,
-  switchActiveState
-} from "../../Handlers/handlers";
-import InputContainer from "../../components/InputContainer";
+import InputComponent from "../../components/InputComponent";
+import SwitchComponent from "../../components/SwitchComponent";
+import ConditionalRender from "../../components/ConditionalRender";
 
 
 const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
-
   const [active, setActive] = useState(data)
   const [tasksArray, setTasksArray] = useState(tasks)
   const [activeArray, setActiveArray] = useState([])
@@ -32,8 +25,6 @@ const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
     setCompletedArray(tasksArray.filter((ele) => ele.completed))
   }, [tasksArray])
 
-
-  console.log('VIEW RENDER')
 
   return (
     <MainContainer>
@@ -46,73 +37,28 @@ const Home = ({tasks, update, image, icon, cross, checkIcon, data}) => {
             <SwitcherIcon icon={icon.default}/>
           </LogoContainer>
           <TodoContainer>
-            <InputContainer tasksArray={tasksArray}
+            <InputComponent tasksArray={tasksArray}
                             setTasksArray={setTasksArray}
                             update={update}
             />
             <TodoListBlock>
-              {
-                active.map(ele => {
-                  if (ele.id === 2 && ele.active === true) {
-                    return (
-                      activeArray.map((element) => {
-                        return (
-                          <TaskComponent key={element.id} element={element}
-                                         onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
-                                         src={checkIcon.default} cross={cross.default}
-                                         onClick1={() => deleteTaskHandler(element.id, tasksArray, setTasksArray, update)}/>
-                        )
-                      })
-                    )
-                  } else if (ele.id === 3 && ele.active === true) {
-                    return (
-                      completedArray.map((element) => {
-                        return (
-                          <TaskComponent key={element.id} element={element}
-                                         onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
-                                         src={checkIcon.default} cross={cross.default}
-                                         onClick1={() => deleteTaskHandler(element.id, tasksArray, setTasksArray, update)}/>
-                        )
-                      })
-                    )
-                  } else if (ele.id === 1 && ele.active === true) {
-                    return (
-                      tasksArray.map((element) => {
-                        return (
-                          <TaskComponent key={element.id} element={element}
-                                         onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
-                                         src={checkIcon.default} cross={cross.default}
-                                         onClick1={() => deleteTaskHandler(element.id, tasksArray, setTasksArray, update)}/>
-                        )
-                      })
-                    )
-                  }
-                })
-              }
-              <ElementsContainer>
-                <ItemsLeft>
-                  {tasksArray.length} items left
-                </ItemsLeft>
-                <SwitchBlock>
-                  {
-                    active.map(ele => {
-                      if (ele.active) {
-                        return (
-                          <Active key={ele.id}>{ele.text}</Active>
-                        )
-                      } else {
-                        return (
-                          <Simple key={ele.id}
-                                  onClick={() => switchActiveState(ele.id, active, setActive)}>{ele.text}</Simple>
-                        )
-                      }
-                    })
-                  }
-                </SwitchBlock>
-                <ClearBlock onClick={() => clearCompletedHandler(setTasksArray, tasksArray, update)}>
-                  Clear Completed
-                </ClearBlock>
-              </ElementsContainer>
+              <ConditionalRender
+                active={active}
+                activeArray={activeArray}
+                completedArray={completedArray}
+                setTasksArray={setTasksArray}
+                tasksArray={tasksArray}
+                update={update}
+                checkIcon={checkIcon}
+                cross={cross}
+              />
+              <SwitchComponent
+                tasksArray={tasksArray}
+                active={active}
+                setActive={setActive}
+                setTasksArray={setTasksArray}
+                update={update}
+              />
             </TodoListBlock>
           </TodoContainer>
         </ContentContainer>
