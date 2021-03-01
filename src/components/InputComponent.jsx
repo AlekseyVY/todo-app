@@ -8,7 +8,7 @@ function InputComponent({ tasksArray, setTasksArray, update, theme}) {
 
   return <FormContainer onSubmit={(e) =>addTaskHandler(e, value, tasksArray, setTasksArray, update, setValue)}>
     <Input listTextColor={theme.listTextColor} bgColor={theme.bgColor} value={value} onChange={(e) => setValue(e.target.value)} placeholder={"Create a new todo…"}/>
-    <Oval type={"submit"}/>
+    <Oval theme={theme.bgColor} type={"submit"}/>
   </FormContainer>;
 }
 
