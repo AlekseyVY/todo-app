@@ -4,6 +4,10 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   width: 144rem;
   height: 80rem;
+  @media (max-width: 375px){
+    width: 37.5rem;
+    height: 73rem;
+  }
 `
 
 export const TopBackground = styled.div`
@@ -13,12 +17,20 @@ export const TopBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 375px){
+    width: 37.5rem;
+    height: 20rem;
+    background-image: url(${props => props.mobile});
+  }
 `
 
 export const ContentContainer = styled.div`
   width: 54rem;
   display: flex;
   flex-direction: column;
+  @media (max-width: 375px){
+    width: 32.7rem;
+  }
 `
 
 export const LogoContainer = styled.div`
@@ -26,12 +38,22 @@ export const LogoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 375px){
+    width: 32.7rem;
+    height: 4.8rem;
+    margin-top: 4.8rem;;
+  }
 `
 
 export const TodoContainer = styled.div`
   width: 54rem;
   border-radius: 0.5rem;
   position: relative;
+  color: ${props => props.listTextColor};
+  @media (max-width: 375px){
+    width: 32.7rem;
+    margin-top: -5rem;
+  }
 `
 
 export const LogoText = styled.div`
@@ -45,6 +67,10 @@ export const SwitcherIcon = styled.div`
   background-image: url(${props => props.icon});
   width: 2.6rem;
   height: 2.6rem;
+  z-index: 10;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const FormContainer = styled.form`
@@ -52,6 +78,9 @@ export const FormContainer = styled.form`
   height: 6.4rem;
   margin-top: 6.3rem;
   position: relative;
+  @media (max-width: 375px){
+    width: 32.7rem;
+  }
 `
 
 export const Input = styled.input`
@@ -62,6 +91,11 @@ export const Input = styled.input`
   padding-left: 7.2rem;
   outline: none;
   border: none;
+  color: ${props => props.listTextColor};
+  background-color: ${props => props.bgColor};
+  @media (max-width: 375px){
+    width: 25.5rem;
+  }
 `
 
 
@@ -73,7 +107,7 @@ export const Oval = styled.button`
   position: absolute;
   left: 5%;
   top: 33%;
-  background: #FFF;
+  background: ${props => props.theme};
   outline: none;
   z-index: 1;
   &:hover {
@@ -115,10 +149,12 @@ export const TodoListBlock = styled.div`
   display: flex;
   border-radius: 0.5rem;
   flex-direction: column;
-
-  -webkit-box-shadow: 10px 10px 20px 5px rgba(227,228,241,1);
-  -moz-box-shadow: 10px 10px 20px 5px rgba(227,228,241,1);
-  box-shadow: 10px 10px 20px 5px rgba(227,228,241,1);
+  -webkit-box-shadow: ${props => props.webkitShadow};
+  -moz-box-shadow: ${props => props.mozShadow};
+  box-shadow: ${props => props.boxShadow};
+  @media (max-width: 375px){
+    width: 32.7rem;
+  }
 `
 
 export const Delete = styled.div`
@@ -129,6 +165,9 @@ export const Delete = styled.div`
   top: 33%;
   right: 2.4rem;
   background-image: url(${props => props.cross});
+  @media (max-width: 375px){
+    display: unset;
+  }
 `
 
 export const Task = styled.li`
@@ -136,15 +175,14 @@ export const Task = styled.li`
   height: 6.4rem;
   font-size: 1.8rem;
   padding-left: 7.2rem;
-  background: #FFF;
-  border-bottom: 2px solid #E3E4F1;
+  background: ${props => props.theme};
+  border-bottom: 2px solid #979797;
   position: relative;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   display: flex;
   align-items: center;
   margin: 0.01rem;
-  color: #494C6B;
   &:hover {
     cursor: pointer;
   }
@@ -152,11 +190,13 @@ export const Task = styled.li`
     cursor: pointer;
     display: block;
   }
+  @media (max-width: 375px){
+    width: 25.5rem;
+  }
 `
 
 export const TextWrapper = styled.div`
   width: 100%;
-
 `
 
 
@@ -168,19 +208,64 @@ export const ElementsContainer = styled.div`
   align-items: center;
   font-size: 1.4rem;
   letter-spacing: -0.19px;
-  background: #FFF;
+  background: ${props => props.bgColor};
   border-radius: 0.5rem;
-
+  flex-wrap: wrap;
+  @media (max-width: 375px){
+    width: 32.7rem;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+  }
 `
 
 export const ItemsLeft = styled.div`
-  
+  order: 1;
+  @media (max-width: 375px){
+    order: 1;
+  }
 `
 
 export const SwitchBlock = styled.div`
   width: 16.6rem;
   display: flex;
   justify-content: space-between;
+  order: 2;
+  @media (max-width: 375px){
+    display: none;
+  }
+`
+
+export const SwitchBlockMobile = styled.div`
+  display: none;
+  @media (max-width: 375px){
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    order: 3;
+    width: 100%;
+    top: 10rem;
+    left: 0;
+    z-index: 2;
+  }
+`
+
+export const MobileBlock = styled.div`
+  display: none;
+  @media (max-width: 375px) {
+    display: unset;
+    width: 32.7rem;
+    height: 4.8rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    background: ${props => props.bgColor};
+    -webkit-box-shadow: ${props => props.webkitShadow};
+    -moz-box-shadow: ${props => props.mozShadow};
+    box-shadow: ${props => props.boxShadow};
+    z-index: 1;
+  }
 `
 
 
@@ -200,9 +285,13 @@ export const Simple = styled.div`
 `
 
 export const ClearBlock = styled.div`
+  order: 3;
   &:hover {
     cursor: pointer;
     color: orangered;
+  }
+  @media (max-width: 375px){
+    order: 2;
   }
 `
 
@@ -218,12 +307,17 @@ export const BottomContainer = styled.div`
   padding-top: 45rem;
   font-size: 1.4rem;
   text-align: center;
-  background: #FFF;
+  color: ${props => props.secondaryText};
+  background: ${props => props.bgColor}};
+@media (max-width: 375px){
+  width: 37.5rem;
+}
 `
 
 
 export const UlContainer = styled.ul`
   list-style: none;
+  background-color: ${props => props.theme};
   margin: 0;
   padding: 0;
 `

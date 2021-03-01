@@ -2,7 +2,8 @@ import {CompletedOval, CompletedText, Delete, Oval, Task, TextWrapper} from "../
 
 
 function TaskComponent(props) {
-  return <Task>
+  console.log(props)
+  return <Task theme={props.theme}>
     {
       props.element.completed
         ? <CompletedText>
@@ -13,7 +14,7 @@ function TaskComponent(props) {
         </CompletedText>
         : <TextWrapper>
           {props.element.task}
-          <Oval onClick={props.onClick}/>
+          <Oval theme={props.theme} onClick={props.onClick}/>
         </TextWrapper>
     }
     <Delete cross={props.cross} onClick={props.onClick1}/>

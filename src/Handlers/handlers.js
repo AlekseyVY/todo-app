@@ -19,6 +19,8 @@ export  const addTaskHandler = (e, value, tasksArray, setTasksArray, update, set
     alert('Please Enter Valid Task!')
   } else if(tasksArray.length >= 5) {
     alert('Please finish tasks you already scheduled!, Big long lists can be frustrating and can potentially lead to anxiety and procrastination!')
+  } else if (value.length > 15) {
+    alert("Write a TASK, not a STORY! (max-length: 15 chars.)")
   }
   else {
     let task = {

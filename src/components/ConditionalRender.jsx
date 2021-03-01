@@ -13,10 +13,12 @@ const ConditionalRender = ({
                                     tasksArray,
                                     update,
                                     checkIcon,
-                                    cross
+                                    cross,
+                             theme
                                   }) => {
 
   const handleOnDragEnd = (result, tasksArray, setTasksArray) => {
+    if (!result.destination) return;
     const items = tasksArray;
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -27,7 +29,7 @@ const ConditionalRender = ({
     <DragDropContext onDragEnd={(result) => handleOnDragEnd(result, tasksArray, setTasksArray)}>
       <Droppable droppableId='characters'>
         {(provided) => (
-          <UlContainer className='characters' {...provided.droppableProps} ref={provided.innerRef}>
+          <UlContainer theme={theme} className='characters' {...provided.droppableProps} ref={provided.innerRef}>
             {
               active.map((ele, index) => {
                 if (ele.id === 2 && ele.active === true) {
@@ -40,6 +42,7 @@ const ConditionalRender = ({
                                  {...provided.draggableProps}
                                  {...provided.dragHandleProps}>
                               <TaskComponent
+                                theme={theme}
                                 key={element.id}
                                 element={element}
                                 onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
@@ -61,6 +64,7 @@ const ConditionalRender = ({
                                  {...provided.draggableProps}
                                  {...provided.dragHandleProps}>
                               <TaskComponent
+                                theme={theme}
                                 key={element.id} element={element}
                                 onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
                                 src={checkIcon.default} cross={cross.default}
@@ -81,6 +85,7 @@ const ConditionalRender = ({
                                  {...provided.draggableProps}
                                  {...provided.dragHandleProps}>
                               <TaskComponent
+                                theme={theme}
                                 key={element.id} element={element}
                                 onClick={() => completedHandler(element.id, setTasksArray, tasksArray)}
                                 src={checkIcon.default} cross={cross.default}
