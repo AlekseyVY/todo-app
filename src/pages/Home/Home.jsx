@@ -20,7 +20,7 @@ const Home = ({tasks, update, cross, checkIcon, data}) => {
   const [tasksArray, setTasksArray] = useState(tasks)
   const [activeArray, setActiveArray] = useState([])
   const [completedArray, setCompletedArray] = useState([])
-  const [themeSwitch, setSwitchTheme] = useState(true)
+  const [themeSwitch, setSwitchTheme] = useState(false)
   const [theme, setTheme] = useState(() => themeSwitchHelper(themeSwitch))
 
   useEffect(() => {
