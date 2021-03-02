@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 
 export const MainContainer = styled.div`
-  width: 144rem;
+  width: 100%;
   height: 80rem;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 37.5rem;
     height: 73rem;
   }
@@ -12,12 +12,12 @@ export const MainContainer = styled.div`
 
 export const TopBackground = styled.div`
   background-image: url(${props => props.image});
-  width: 144rem;
+  width: 100%;
   height: 30rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 37.5rem;
     height: 20rem;
     background-image: url(${props => props.mobile});
@@ -28,7 +28,7 @@ export const ContentContainer = styled.div`
   width: 54rem;
   display: flex;
   flex-direction: column;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
   }
 `
@@ -38,7 +38,7 @@ export const LogoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
     height: 4.8rem;
     margin-top: 4.8rem;;
@@ -50,7 +50,7 @@ export const TodoContainer = styled.div`
   border-radius: 0.5rem;
   position: relative;
   color: ${props => props.listTextColor};
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
     margin-top: -5rem;
   }
@@ -78,7 +78,7 @@ export const FormContainer = styled.form`
   height: 6.4rem;
   margin-top: 6.3rem;
   position: relative;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
   }
 `
@@ -93,7 +93,7 @@ export const Input = styled.input`
   border: none;
   color: ${props => props.listTextColor};
   background-color: ${props => props.bgColor};
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 25.5rem;
   }
 `
@@ -152,7 +152,7 @@ export const TodoListBlock = styled.div`
   -webkit-box-shadow: ${props => props.webkitShadow};
   -moz-box-shadow: ${props => props.mozShadow};
   box-shadow: ${props => props.boxShadow};
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
   }
 `
@@ -165,7 +165,7 @@ export const Delete = styled.div`
   top: 33%;
   right: 2.4rem;
   background-image: url(${props => props.cross});
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     display: unset;
   }
 `
@@ -190,7 +190,7 @@ export const Task = styled.li`
     cursor: pointer;
     display: block;
   }
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 25.5rem;
   }
 `
@@ -211,7 +211,7 @@ export const ElementsContainer = styled.div`
   background: ${props => props.bgColor};
   border-radius: 0.5rem;
   flex-wrap: wrap;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     width: 32.7rem;
     align-items: center;
     justify-content: space-around;
@@ -221,7 +221,7 @@ export const ElementsContainer = styled.div`
 
 export const ItemsLeft = styled.div`
   order: 1;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     order: 1;
   }
 `
@@ -231,14 +231,14 @@ export const SwitchBlock = styled.div`
   display: flex;
   justify-content: space-between;
   order: 2;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     display: none;
   }
 `
 
 export const SwitchBlockMobile = styled.div`
   display: none;
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     position: absolute;
     display: flex;
     justify-content: space-around;
@@ -252,7 +252,7 @@ export const SwitchBlockMobile = styled.div`
 
 export const MobileBlock = styled.div`
   display: none;
-  @media (max-width: 375px) {
+  @media (max-width: 600px) {
     display: unset;
     width: 32.7rem;
     height: 4.8rem;
@@ -290,7 +290,7 @@ export const ClearBlock = styled.div`
     cursor: pointer;
     color: orangered;
   }
-  @media (max-width: 375px){
+  @media (max-width: 600px){
     order: 2;
   }
 `
@@ -302,14 +302,14 @@ export const CompletedText = styled.div`
 
 
 export const BottomContainer = styled.div`
-  width: 144rem;
+  width: 100%;
   height: 5rem;
   padding-top: 45rem;
   font-size: 1.4rem;
   text-align: center;
   color: ${props => props.secondaryText};
   background: ${props => props.bgColor}};
-@media (max-width: 375px){
+@media (max-width: 600px){
   width: 37.5rem;
 }
 `

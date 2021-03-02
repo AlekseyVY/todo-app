@@ -7,7 +7,9 @@ function InputComponent({ tasksArray, setTasksArray, update, theme}) {
   const [value, setValue] = useState('')
 
   return <FormContainer onSubmit={(e) =>addTaskHandler(e, value, tasksArray, setTasksArray, update, setValue)}>
-    <Input listTextColor={theme.listTextColor} bgColor={theme.bgColor} value={value} onChange={(e) => setValue(e.target.value)} placeholder={"Create a new todo…"}/>
+    <label>
+      <Input name={'Todo input'} listTextColor={theme.listTextColor} bgColor={theme.bgColor} value={value} onChange={(e) => setValue(e.target.value)} placeholder={"Create a new todo…"}/>
+    </label>
     <Oval theme={theme.bgColor} type={"submit"}/>
   </FormContainer>;
 }
