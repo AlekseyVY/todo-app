@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 
 export const MainContainer = styled.div`
+  max-width: 144rem;
   width: 100%;
   height: 80rem;
   @media (max-width: 600px){
