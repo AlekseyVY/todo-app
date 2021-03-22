@@ -17,4 +17,4 @@
 - Toggle light and dark mode
 - Drag and drop to reorder items on the list
 
-### coded by Aleksey Vasiliev. -> [Join me on my social](https://vk.com/alekseyvy) <-
+### coded by Aleksey Vasiliev. -> [Join me on my social](https://vk.com/alekseyvy) <
